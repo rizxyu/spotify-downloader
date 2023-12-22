@@ -4,18 +4,23 @@ function downloadSong() {
     alert('Masukkan URL lagu Spotify terlebih dahulu.');
     return;
   }
-  /*
-  */
+
   fetch(`http://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Terjadi kesalahan dalam mengunduh lagu.');
+      }
+      return response.json();
+    })
     .then(data => {
       displayResult(data);
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('Terjadi kesalahan dalam mengunduh lagu.');
+      alert(error.message);
     });
 }
+
 
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
