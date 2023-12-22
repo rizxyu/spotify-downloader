@@ -10,7 +10,7 @@ loading.classList.add("loader");
 // Menghindari spam fetchAPI, button disabled ketika proses fetch
 downloadBtn.setAttribute('disabled','');
 
-  fetch(`http://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
+  fetch(`https://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Terjadi kesalahan dalam mengunduh lagu.');
