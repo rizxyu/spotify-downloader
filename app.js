@@ -4,12 +4,9 @@ function downloadSong() {
     alert('Masukkan URL lagu Spotify terlebih dahulu.');
     return;
   }
-
-  // Gantilah dengan logika pengunduhan lagu dari API sesuai kebutuhan.
-  // Misalnya, Anda dapat menggunakan fetch() atau library seperti axios.
-
-  // Contoh fetch():
-  fetch(`/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
+  /*
+  */
+  fetch(`http://api.wizzteam.my.ic/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
       displayResult(data);
