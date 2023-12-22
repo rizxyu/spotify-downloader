@@ -24,7 +24,7 @@ downloadBtn.setAttribute('disabled','');
       console.error('Error:', error);
       alert('Terjadi kesalahan dalam mengunduh lagu.');
     });
-
+}
 
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
