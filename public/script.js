@@ -10,15 +10,11 @@ loading.classList.add("loader");
 // Menghindari spam fetchAPI, button disabled ketika proses fetch
 downloadBtn.setAttribute('disabled','');
 
-  fetch(`https://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Terjadi kesalahan dalam mengunduh lagu.');
-      }
-      return response.json();
-    })
+  fetch(`/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
+    .then(response => response.json())
     .then(data => {
-      displayResult(data);
+      displayResult(data)
+    
         //hilangkan loading dan kembalikan button ketika berhasil fetch
   loading.classList.remove("loader");
   downloadBtn.removeAttribute('disabled','');
@@ -26,12 +22,8 @@ downloadBtn.setAttribute('disabled','');
     })
     .catch(error => {
       console.error('Error:', error);
-      alert(error.message);
-      //hilangkan loading dan kembali button ketika error
-      loading.classList.remove("loader");
-      downloadBtn.removeAttribute('disabled','');
+      alert('Terjadi kesalahan dalam mengunduh lagu.');
     });
-}
 
 
 function displayResult(result) {
