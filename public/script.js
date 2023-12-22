@@ -34,7 +34,7 @@ function displayResult(result) {
     <p><strong>Album:</strong> ${result.album}</p>
     <p><strong>Released:</strong> ${result.rilis}</p>
     <img src="${result.thumb}" alt="Thumbnail" style="max-width: 100%; height: auto;">
-    <button onclick="dosabesae('${result.audio}', '${result.judul}')">Download</button>  `;
+    <button onclick="dosabesar('${result.audio}', '${result.judul}')">Download</button>  `;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
   const resultSection = document.querySelector('.result-section');
