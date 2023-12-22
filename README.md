@@ -3,3 +3,8 @@ Mengunduh lagu dari aplikasi spotify
 
 ## Api Playground
 [Api](http://api.wizzteam.my.id)
+
+## Contributor
+- Mininxd
+- Rizxyu
+- Wizzteam
