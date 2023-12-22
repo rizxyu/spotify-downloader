@@ -1,7 +1,7 @@
 function downloadSong() {
   const urlInput = document.getElementById('urlInput').value;
   if (urlInput.trim() === '') {
-    alert('Masukkan URL lagu Spotify terlebih dahulu.');
+    alert('Enter the URL or Title of the Spotify song first.');
     return;
   }
 
@@ -22,7 +22,7 @@ downloadBtn.setAttribute('disabled','');
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('Terjadi kesalahan dalam mengunduh lagu.');
+      alert('An error occurred in downloading the song.');
     });
 }
 
@@ -34,10 +34,7 @@ function displayResult(result) {
     <p><strong>Album:</strong> ${result.album}</p>
     <p><strong>Rilis:</strong> ${result.rilis}</p>
     <img src="${result.thumb}" alt="Thumbnail" style="max-width: 100%; height: auto;">
-    <audio controls>
-      <source src="${result.audio}" type="audio/mpeg">
-      Browser Anda tidak mendukung tag audio.
-    </audio>
+    <a href="${result.audio}" download="${result.judul}.mp3"><button>Download Lagu</button></a>
   `;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
