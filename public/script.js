@@ -41,13 +41,29 @@ function displayResult(result) {
   resultSection.style.display = 'block';
 }
 function dosabesar(audioUrl, judul) {
-  // Buat elemen anchor untuk menginisiasi unduhan
-  const downloadLink = document.createElement('a');
-  downloadLink.href = audioUrl;
-  downloadLink.download = `${judul}.mp3`;
-  
-  // Simulasikan klik pada elemen anchor untuk memulai unduhan
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
+  fetch(audioUrl)
+    .then(response => response.blob())
+    .then(blob => {
+      // Buat objek Blob dan URL untuk file audio
+      const blobUrl = URL.createObjectURL(blob);
+
+      // Buat elemen anchor untuk menginisiasi unduhan
+      const downloadLink = document.createElement('a');
+      downloadLink.href = blobUrl;
+      downloadLink.download = `${judul}.mp3`;
+
+      // Appending elemen ke dalam dokumen untuk memicu unduhan
+      document.body.appendChild(downloadLink);
+
+      // Simulasikan klik pada elemen anchor untuk memulai unduhan
+      downloadLink.click();
+
+      // Hapus elemen setelah unduhan dimulai
+      document.body.removeChild(downloadLink);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Terjadi kesalahan dalam mengunduh lagu.');
+    });
 }
+
