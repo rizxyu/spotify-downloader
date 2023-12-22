@@ -10,7 +10,7 @@ loading.classList.add("loader");
 // Menghindari spam fetchAPI, button disabled ketika proses fetch
 downloadBtn.setAttribute('disabled','');
 
-  fetch(`/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
+  fetch(`https://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
       displayResult(data)
