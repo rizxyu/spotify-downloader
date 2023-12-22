@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./loader.css">
   <title>Spotify Downloader</title>
 </head>
 <body>
@@ -11,7 +12,9 @@
     <h1>Spotify Downloader</h1>
     <div class="input-section">
       <input type="text" id="urlInput" placeholder="Masukkan URL lagu Spotify">
-      <button onclick="downloadSong()">Unduh</button>
+      <button id="downloadBtn" onclick="downloadSong()">Unduh
+      <div id="loading"><div></div><div></div></div>
+      </button>
     </div>
     <div class="result-section">
       <h2>Hasil:</h2>

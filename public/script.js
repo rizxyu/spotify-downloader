@@ -5,6 +5,11 @@ function downloadSong() {
     return;
   }
 
+// Munculkan loading ketika dipencet
+loading.classList.add("loader");
+// Menghindari spam fetchAPI, button disabled ketika proses fetch
+downloadBtn.setAttribute('disabled','');
+
   fetch(`http://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
     .then(response => {
       if (!response.ok) {
@@ -14,10 +19,17 @@ function downloadSong() {
     })
     .then(data => {
       displayResult(data);
+        //hilangkan loading dan kembalikan button ketika berhasil fetch
+  loading.classList.remove("loader");
+  downloadBtn.removeAttribute('disabled','');
+  
     })
     .catch(error => {
       console.error('Error:', error);
       alert(error.message);
+      //hilangkan loading dan kembali button ketika error
+      loading.classList.remove("loader");
+      downloadBtn.removeAttribute('disabled','');
     });
 }
 
