@@ -47,5 +47,7 @@ function dosabesar(audioUrl, judul) {
   downloadLink.download = `${judul}.mp3`;
   
   // Simulasikan klik pada elemen anchor untuk memulai unduhan
+  document.body.appendChild(downloadLink);
   downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
