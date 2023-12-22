@@ -29,12 +29,12 @@ downloadBtn.setAttribute('disabled','');
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = `
-    <p><strong>Judul:</strong> ${result.judul}</p>
-    <p><strong>Artis:</strong> ${result.artis}</p>
+    <p><strong>Title:</strong> ${result.judul}</p>
+    <p><strong>Artist:</strong> ${result.artis}</p>
     <p><strong>Album:</strong> ${result.album}</p>
-    <p><strong>Rilis:</strong> ${result.rilis}</p>
+    <p><strong>Released:</strong> ${result.rilis}</p>
     <img src="${result.thumb}" alt="Thumbnail" style="max-width: 100%; height: auto;">
-    <a href="${result.audio}" download="${result.judul}.mp3"><button>Download Lagu</button></a>
+    <a href="${result.audio}" download="${result.judul}.mp3" target="_blank"><button>Download</button></a>
   `;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
