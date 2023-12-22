@@ -34,10 +34,18 @@ function displayResult(result) {
     <p><strong>Album:</strong> ${result.album}</p>
     <p><strong>Released:</strong> ${result.rilis}</p>
     <img src="${result.thumb}" alt="Thumbnail" style="max-width: 100%; height: auto;">
-    <a href="${result.audio}" download="${result.judul}.mp3" target="_blank"><button>Download</button></a>
-  `;
+    <button onclick="dosabesae('${result.audio}', '${result.judul}')">Download</button>  `;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
   const resultSection = document.querySelector('.result-section');
   resultSection.style.display = 'block';
+}
+function dosabesar(audioUrl, judul) {
+  // Buat elemen anchor untuk menginisiasi unduhan
+  const downloadLink = document.createElement('a');
+  downloadLink.href = audioUrl;
+  downloadLink.download = `${judul}.mp3`;
+  
+  // Simulasikan klik pada elemen anchor untuk memulai unduhan
+  downloadLink.click();
 }
