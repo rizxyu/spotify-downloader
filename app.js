@@ -6,7 +6,7 @@ function downloadSong() {
   }
   /*
   */
-  fetch(`http://api.wizzteam.my.ic/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
+  fetch(`http://api.wizzteam.my.id/api/downloader?endpoint=spotify&text=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
       displayResult(data);
