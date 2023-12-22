@@ -22,7 +22,7 @@ downloadBtn.setAttribute('disabled','');
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('An error occurred in downloading the song.');
+      alert('An error occurred in searching the song.');
     });
 }
 
