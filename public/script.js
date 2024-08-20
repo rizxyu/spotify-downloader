@@ -5,20 +5,19 @@ function downloadSong() {
     return;
   }
 
-// Munculkan loading ketika dipencet
-loading.classList.add("loader");
-// Menghindari spam fetchAPI, button disabled ketika proses fetch
-downloadBtn.setAttribute('disabled','');
+  // Munculkan loading ketika dipencet
+  loading.classList.add("loader");
+  // Menghindari spam fetchAPI, button disabled ketika proses fetch
+  downloadBtn.setAttribute('disabled','');
 
-  fetch(`https://api.wizzteam.my.id/api/music/?endpoint=spotify&text=${encodeURIComponent(urlInput)}&token=encrypt`)
+  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
-      displayResult(data)
-    
-        //hilangkan loading dan kembalikan button ketika berhasil fetch
-  loading.classList.remove("loader");
-  downloadBtn.removeAttribute('disabled','');
-  
+      displayResult(data.result);
+
+      // Hilangkan loading dan kembalikan button ketika berhasil fetch
+      loading.classList.remove("loader");
+      downloadBtn.removeAttribute('disabled','');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -29,17 +28,17 @@ downloadBtn.setAttribute('disabled','');
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = `
-    <p><strong>Title:</strong> ${result.judul}</p>
-    <p><strong>Artist:</strong> ${result.artis}</p>
-    <p><strong>Album:</strong> ${result.album}</p>
-    <p><strong>Released:</strong> ${result.rilis}</p>
-    <img src="${result.thumb}" alt="Thumbnail" style="max-width: 100%; height: auto;">
-    <button onclick="dosabesar('${result.audio}', '${result.judul}')">Download</button>  `;
+    <p><strong>Album Name:</strong> ${result.albumName}</p>
+    <p><strong>Artist:</strong> ${result.artistName}</p>
+    <p><strong>Released:</strong> ${result.releaseDate}</p>
+    <a href="${result.externalUrl}" target="_blank">Open in Spotify</a>
+    <button onclick="dosabesar('${result.token}', '${result.albumName}')">Download</button>`;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
   const resultSection = document.querySelector('.result-section');
   resultSection.style.display = 'block';
 }
+
 function dosabesar(audioUrl, judul) {
   fetch(audioUrl)
     .then(response => response.blob())
@@ -66,4 +65,3 @@ function dosabesar(audioUrl, judul) {
       alert('Terjadi kesalahan dalam mengunduh lagu.');
     });
 }
-
