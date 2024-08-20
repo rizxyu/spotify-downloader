@@ -1,3 +1,4 @@
+
 function downloadSong() {
   const urlInput = document.getElementById('urlInput').value;
   if (urlInput.trim() === '') {
@@ -5,17 +6,18 @@ function downloadSong() {
     return;
   }
 
-  // Munculkan loading ketika dipencet
   loading.classList.add("loader");
-  // Menghindari spam fetchAPI, button disabled ketika proses fetch
   downloadBtn.setAttribute('disabled','');
 
-  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
+  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
     .then(response => response.json())
     .then(data => {
       displayResult(data.result);
-
-      // Hilangkan loading dan kembalikan button ketika berhasil fetch
       loading.classList.remove("loader");
       downloadBtn.removeAttribute('disabled','');
     })
@@ -24,6 +26,7 @@ function downloadSong() {
       alert('An error occurred in searching the song.');
     });
 }
+
 
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
