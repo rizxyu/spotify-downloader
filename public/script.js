@@ -1,4 +1,3 @@
-
 function downloadSong() {
   const urlInput = document.getElementById('urlInput').value;
   if (urlInput.trim() === '') {
@@ -6,20 +5,19 @@ function downloadSong() {
     return;
   }
 
+  // Munculkan loading ketika dipencet
   loading.classList.add("loader");
-  downloadBtn.setAttribute('disabled','');
+  // Menghindari spam fetchAPI, button disabled ketika proses fetch
+  downloadBtn.setAttribute('disabled', '');
 
-  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  })
+  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
-      displayResult(data.result);
+      displayResult(data);
+
+      // Hilangkan loading dan kembalikan button ketika berhasil fetch
       loading.classList.remove("loader");
-      downloadBtn.removeAttribute('disabled','');
+      downloadBtn.removeAttribute('disabled', '');
     })
     .catch(error => {
       console.error('Error:', error);
@@ -27,15 +25,12 @@ function downloadSong() {
     });
 }
 
-
 function displayResult(result) {
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = `
-    <p><strong>Album Name:</strong> ${result.albumName}</p>
-    <p><strong>Artist:</strong> ${result.artistName}</p>
-    <p><strong>Released:</strong> ${result.releaseDate}</p>
-    <a href="${result.externalUrl}" target="_blank">Open in Spotify</a>
-    <button onclick="dosabesar('${result.token}', '${result.albumName}')">Download</button>`;
+    <p><strong>Title:</strong> ${result.result.title}</p>
+    <img src="${result.result.thumbnail}" alt="Thumbnail" style="max-width: 100%; height: auto;">
+    <button onclick="dosabesar('${result.result.downloadLink}', '${result.result.title}')">Download</button>`;
 
   // Tampilkan hasil section setelah mendapatkan hasil.
   const resultSection = document.querySelector('.result-section');
