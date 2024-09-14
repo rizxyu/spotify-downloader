@@ -10,7 +10,7 @@ function downloadSong() {
   // Menghindari spam fetchAPI, button disabled ketika proses fetch
   downloadBtn.setAttribute('disabled', '');
 
-  fetch(`https://blueline-sandy.vercel.app/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
+  fetch(`https://api-id.wzblueline.xyz/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
     .then(response => response.json())
     .then(data => {
       displayResult(data);
