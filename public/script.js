@@ -13,9 +13,9 @@ function downloadSong() {
   fetch(`https://api-id.wzblueline.xyz/api/dl/spotify?url=${encodeURIComponent(urlInput)}`, {
     method: 'GET',
     headers: {
+      "Origin": "https://api-id.wzblueline.xyz",
+      "Referer":"https://api-id.wzblueline.xyz/",
       'Content-Type': "application/json; charset=utf-8",
-      'X-Vercel-Id': "sin1::iad1::rjv8w-1726316792675-dc5c79ca5b6b",
-      'X-Api-Key': "useno",
       'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'// Tambahkan header JSON
     }
   })
