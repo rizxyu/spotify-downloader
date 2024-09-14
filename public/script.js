@@ -10,7 +10,12 @@ function downloadSong() {
   // Menghindari spam fetchAPI, button disabled ketika proses fetch
   downloadBtn.setAttribute('disabled', '');
 
-  fetch(`https://api-id.wzblueline.xyz/api/dl/spotify?url=${encodeURIComponent(urlInput)}`)
+  fetch(`https://api-id.wzblueline.xyz/api/dl/spotify?url=${encodeURIComponent(urlInput)}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',  // Tambahkan header JSON
+    }
+  })
     .then(response => response.json())
     .then(data => {
       displayResult(data);
@@ -62,4 +67,4 @@ function dosabesar(audioUrl, judul) {
       console.error('Error:', error);
       alert('Terjadi kesalahan dalam mengunduh lagu.');
     });
-}
+    }
